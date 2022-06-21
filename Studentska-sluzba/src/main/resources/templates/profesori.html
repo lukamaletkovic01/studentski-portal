@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body onload="loadProfesori();obojiVrste()">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1><a href="/adminStudenti" class="logo">Studentska Sluzba</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <a href="/adminStudenti"><span class="fa fa-user mr-3"></span> Studenti</a>
+          </li>
+          <li class="active">
+              <a href="/adminProfesori"><span class="fa fa-user mr-3"></span> Profesori</a>
+          </li>
+          <li>
+            <a href="/adminPredmeti"><span class="fa fa-sticky-note mr-3"></span> Predmeti</a>
+          </li>
+          <li>
+            <a href="/adminIspiti"><span class="fa fa-sticky-note mr-3"></span> Ispiti</a>
+          </li>
+        
+        </ul>
+        
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+
+        <div id="forma">
+          <form>
+            <p>
+              <label for="iDProfesora">ID:</label>
+              <input id="iDProfesora" name="iDProfesora" type="text">
+              <label for="imeProfesora">Ime:</label>
+              <input id="imeProfesora" name="imeProfesora" type="text">
+            </p><p>
+              <label for="prezimeProfesora">Prezime:</label>
+              <input id="prezimeProfesora" name="prezimeProfesora" type="text">
+              <label for="jmbgProfesora">JMBG:</label>
+              <input id="jmbgProfesora" name="jmbgProfesora" type="text">
+            </p><p>
+              <label for="emailProfesora">Email:</label>
+              <input id="emailProfesora" name="emailProfesora" type="text">        
+            </p>
+          </form>
+          <br><br>
+          <input style="margin-top:20px" class="dugme" type="button" value="Dodaj" onclick="dodajProfesor()">
+          <input style="margin-top:20px" class="dugme" type="button" value="Izmeni" onclick="izmeniProfesor()">
+        </div>
+
+        <table>
+          <span style="margin-right:5px;">Pretraga</span><input id="pretraga" type="text" onkeyup="filter()">
+        <select id="opcije">
+          <option value="0">ID</option>
+          <option value="PROimeiprezime">Ime/Prezime</option>
+          <option value="3">JMBG</option>
+          <option value="4">Email</option>
+        </select>
+          <tr>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>JMBG</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr th:each="profesor : ${profesori}">
+              <td class="TiDProfesora" th:text="${profesor.iDProfesora}"></td>
+              <td class="TimeProfesora" th:text="${profesor.ime}"></td>
+              <td class="TprezimeProfesora" th:text="${profesor.prezime}"></td>
+              <td class="TjmbgProfesora" th:text="${profesor.jmbg}"></td>
+              <td class="TemailProfesora" th:text="${profesor.email}"></td>
+              <td class = "izmeni"></td>
+              <td class = "obrisi"></td>
+          </tr>
+        </table>
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeAdmin.js"></script>
+  </body>
+</html>

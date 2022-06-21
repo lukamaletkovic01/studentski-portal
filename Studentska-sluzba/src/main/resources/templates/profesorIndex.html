@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+        <h1><a href="/HomeProf" class="logo">Studentska Sluzba</a></h1>
+        
+        
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="/HomeProf"><span class="fa fa-user mr-3"></span>Pocetna Strana</a>
+          </li>
+          <li>
+              <a href="/profesorPredmeti"><span class="fa fa-sticky-note mr-3"></span>Pogledaj predmete</a>
+          </li>
+          <li>
+            <a href="/profesorPrijave"><span class="fa fa-sticky-note mr-3"></span> Prijave ispita</a>
+          </li>
+          <li>
+            <a href="/profesorUpisiPregled"><span class="fa fa-sticky-note mr-3"></span>Pogledaj prijave ispita i upisi ocene</a>
+          </li>
+          
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+      
+        <div id="card" th:each="profesor : ${profesori}">
+          <h2><span th:text="${profesor.ime}"></span>
+          <span th:text="${profesor.prezime}"></span></h2>
+          <p id="title">ID profesora</p>
+          <br>
+          <p id="brindeksa" th:text="${profesor.iDProfesora}"></p>
+          <br>
+          <br>
+          <p class="inf"><b>JMBG:</b>&emsp;<span th:text="${profesor.jmbg}"></span></p>
+          <br>
+          <p class="inf"><b>E-mail:</b>&emsp;<span th:text="${profesor.email}"></span></p>
+          <br><br>
+        </div>
+        
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeProfesor.js"></script>
+  </body>
+</html>

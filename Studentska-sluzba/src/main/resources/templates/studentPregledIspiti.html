@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body onload="proveriImaLiIspita();popuniOcene();obojiVrste()">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1><a href="/Home" class="logo">Studentska Sluzba</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li >
+            <a href="/Home"><span class="fa fa-user mr-3"></span>Pocetna Strana</a>
+          </li>
+          <li >
+              <a href="/StudentPredmeti"><span class="fa fa-sticky-note mr-3"></span>Izaberi Predmete</a>
+          </li>
+          <li>
+            <a href="/StudentPrijava"><span class="fa fa-sticky-note mr-3"></span> Prijavi Ispite</a>
+          </li>
+          <li class = "active">
+            <a href="/studentPregledIspiti"><span class="fa fa-sticky-note mr-3"></span>Pogledaj Prijave ispita</a>
+          </li>
+                  
+           <li>
+            <a href="/studentPregledPolozenihIspita"><span class="fa fa-sticky-note mr-3"></span>Pogledaj Polozene ispite</a>
+          </li>  
+          <li>
+            <a href="/studentPregledPredmeti"><span class="fa fa-sticky-note mr-3"></span>Pogledaj Predmete koje slusam</a>
+          </li>
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+        
+    <table id="tabela">
+      <span style="margin-right:5px;">Pretraga</span><input id="pretraga" type="text" onkeyup="filter()">
+        <select id="opcije">
+          <option value="0">Sifra</option>
+          <option value="1">Naziv</option>
+          <option value="2">Ispitni rok</option>
+          <option value="3">Datum polaganja</option>
+          <option value="4">Ocena</option>
+          <option value="5">ID ispitivaca</option>
+          <option value="6">Skolska godina</option>
+         
+        </select>
+      <tr>
+        <th>Sifra</th>
+        <th>Naziv</th>
+        <th>Ispitni rok</th>
+        <th>Datum polaganja</th>
+        <th>Ocena</th>
+        <th>ID ispitivaca</th>
+        <th>Skolska godina</th>
+        
+      </tr>
+       <tr th:each="ispit : ${ispiti}">  		
+    			<td class="sifraispita" th:text="${ispit.sifraPredmeta}"></td>
+    			<td class="T" th:text="${ispit.naziv}"></td> 
+    			<td class="T" th:text="${ispit.ispitniRok}"></td>
+    			<td class="T" th:text="${ispit.datumPolaganja}"></td>
+    			<td class="ocena" th:text="${ispit.ocena}"></td> 
+    			<td class="T" th:text="${ispit.iDIspitivaca}"></td>
+    			<td class="T" th:text="${ispit.skolskaGodina}"></td>
+    		<!--	<td class="Tsemestar" th:text="${ispit.indeks}"></td> -->
+    			
+     
+      </tr>
+      
+		</table>
+		
+		
+				
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeStudent.js"></script>
+  </body>
+</html>

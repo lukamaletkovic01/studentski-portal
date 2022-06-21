@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body onload="loadPredmeti();obojiVrste()">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1><a href="/adminStudenti" class="logo">Studentska Sluzba</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li >
+            <a href="/adminStudenti"><span class="fa fa-user mr-3"></span> Studenti</a>
+          </li>
+          <li>
+              <a href="/adminProfesori"><span class="fa fa-user mr-3"></span> Profesori</a>
+          </li>
+          <li class="active">
+            <a href="/adminPredmeti"><span class="fa fa-sticky-note mr-3"></span> Predmeti</a>
+          </li>
+          <li>
+            <a href="/adminIspiti"><span class="fa fa-sticky-note mr-3"></span> Ispiti</a>
+          </li>
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+        <div id="forma" style="padding-bottom: 215px;">
+          <form>
+            <p>
+              <label for="sifraPredmeta">Sifra predmeta:</label>
+              <input id="sifraPredmeta" name="sifraPredmeta" type="text">
+              <label for="nazivPredmeta">Naziv predmeta:</label>
+              <input id="nazivPredmeta" name="nazivPredmeta" type="text">
+            </p><p>
+              <label for="imeP">Ime profesora:</label>
+              <input id="imeP" name="imeP" type="text">
+              <label for="prezimeP">Prezime profesora:</label>
+              <input id="prezimeP" name="prezimeP" type="text">
+            </p><p>
+              <label for="tipPredmeta">Tip predmeta:</label>
+              <input id="tipPredmeta" name="tipPredmeta" type="text">
+              <label for="eSPB">ESPB:</label>
+              <input id="eSPB" name="eSPB" type="text">
+            </p><p>
+              <label for="semestar">Semestar:</label>
+              <input id="semestar" name="semestar" type="text">
+            </p>
+          </form>
+          <br><br>
+          <br><br>
+          <br><br>
+          <input style="margin-left: 600px;margin-top: 0px;" class="dugme" type="button" value="Dodaj" onclick="dodajPredmet()">
+          <input style="margin-top: 0px;" class="dugme" type="button" value="Izmeni" onclick="izmeniPredmet()">
+        </div>
+        
+    <table>
+      <span style="margin-right:5px;">Pretraga</span><input id="pretraga" type="text" onkeyup="filter()">
+        <select id="opcije">
+          <option value="0">Sifra</option>
+          <option value="1">Naziv</option>
+          <option value="Pimeiprezime">Ime/Prezime profesora</option>
+          <option value="4">Tip predmeta</option>
+          <option value="5">ESPB</option>
+          <option value="6">Semestar</option>
+        </select>
+      <tr>
+        <th>Sifra</th>
+        <th>Naziv</th>
+        <th>Ime profesora</th>
+        <th>Prezime profesora</th>
+        <th>Tip predmeta</th>
+        <th>ESPB</th>
+        <th>Semestar</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr th:each="predmet : ${predmeti}">  		
+    			<td class="TsifraPredmeta" th:text="${predmet.sifraPredmeta}"></td>
+    			<td class="TnazivPredmeta" th:text="${predmet.nazivPredmeta}"></td>
+    			<td class="TimeP" th:text="${predmet.imeP}"></td>
+    			<td class="TprezimeP" th:text="${predmet.prezimeP}"></td> 
+    			<td class="TtipPredmeta" th:text="${predmet.tipPredmeta}"></td>
+    			<td class="TeSPB" th:text="${predmet.eSPB}"></td>
+    			<td class="Tsemestar" th:text="${predmet.semestar}"></td>
+          <td class = "izmeni"></td>
+    			<td class = "obrisi"></td>
+			</tr>
+		</table>
+		
+	
+				
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeAdmin.js"></script>
+  </body>
+</html>

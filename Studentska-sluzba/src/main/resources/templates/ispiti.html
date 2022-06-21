@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+  </head>
+  <body onload="loadIspitiAdmin();obojiVrste()">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1><a href="/adminStudenti" class="logo">Studentska Sluzba</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li >
+            <a href="/adminStudenti"><span class="fa fa-user mr-3"></span> Studenti</a>
+          </li>
+          <li>
+              <a href="/adminProfesori"><span class="fa fa-user mr-3"></span> Profesori</a>
+          </li>
+          <li>
+            <a href="/adminPredmeti"><span class="fa fa-sticky-note mr-3"></span> Predmeti</a>
+          </li>
+          <li class="active">
+            <a href="/adminIspiti"><span class="fa fa-sticky-note mr-3"></span> Ispiti</a>
+          </li>
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+        <span style="margin-right:5px">Pretraga</span><input id="pretraga1" type="text" onkeyup="doublefilter()">
+        <select id="opcije1">
+          <option value="Iimeiprezime">Ime/Prezime</option>         
+          <option value="0">Indeks</option>         
+        </select>
+        <br>
+        <span style="margin-right:65px;"></span><input id="pretraga2" type="text" onkeyup="doublefilter()">
+        <select id="opcije2">          
+          <option value="3">Sifra predmeta</option>         
+          <option value="4">Naziv predmeta</option>
+        </select>
+             <table>
+              <tr>
+                <th>Indeks</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Sifra predmeta</th>
+                <th>Naziv predmeta</th>
+                <th>Ispitni rok</th>
+                <th>Datum polaganja</th>
+                <th>Ocena</th>
+                <th>Ispitivac</th>
+                <th>Skolska godina</th>
+                <th></th>  
+                
+              </tr>
+             <tr th:each="ispit : ${ispiti}">
+                <td class="indeks" th:text="${ispit.indeks}"></td>
+                <td th:text="${ispit.ime}"></td>
+                <td th:text="${ispit.prezime}"></td>
+                <td class="sifra" th:text="${ispit.sifraPredmeta}"></td>
+                <td th:text="${ispit.naziv}"></td>
+                <td class="ispitniRok" th:text="${ispit.ispitniRok}"></td>
+                <td th:text="${ispit.datumPolaganja}"></td>
+                <td th:text="${ispit.ocena}"></td>
+                <td th:text="${ispit.iDIspitivaca}"></td>
+                <td th:text="${ispit.skolskaGodina}"></td>
+                <td class="ponisti"></td>             
+              </tr>
+              
+		</table>
+		
+		
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeAdmin.js"></script>
+  </body>
+</html>

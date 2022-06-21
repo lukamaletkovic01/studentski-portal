@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body onload="loadIPopuni();obojiVrste()">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+        <h1><a href="/HomeProf" class="logo">Studentska Sluzba</a></h1>
+        
+        
+        <ul class="list-unstyled components mb-5">
+          <li >
+            <a href="/HomeProf"><span class="fa fa-user mr-3"></span>Pocetna Strana</a>
+          </li>
+          <li>
+              <a href="/profesorPredmeti"><span class="fa fa-sticky-note mr-3"></span>Pogledaj predmete</a>
+          </li>
+          <li class="active">
+            <a href="/profesorPrijave"><span class="fa fa-sticky-note mr-3"></span> Prijave ispita</a>
+          </li>
+          <li>
+            <a href="/profesorUpisiPregled"><span class="fa fa-sticky-note mr-3"></span>Pogledaj prijave ispita i upisi ocene</a>
+          </li>
+          
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+       
+    <table>
+      <span style="margin-right:5px;">Pretraga</span><input id="pretraga" type="text" onkeyup="filter()">
+        <select id="opcije">
+          <option value="0">Sifra predmeta</option>
+          <option value="1">Naziv predmeta</option>
+          
+        </select>
+      	<tr>
+        	<th>Sifra Predmeta</th>
+        	<th>Naziv Predmeta</th>
+        	<th>Ispitni rok</th>
+        	<th>Datum otvaranja prijave</th>
+        	<th>Datum zatvaranja prijave</th>
+          <th>Datum polaganja</th>
+          <th></th>
+      	</tr>
+      	
+      	<tr th:each="o : ${op}">  		
+    			<td class="TsifraPredmeta" th:text="${o.sifra}"></td>
+    			<td class="TnazivPredmeta" th:text="${o.naziv}"></td>
+    			<td class="TispitniRok">
+            <select class = "OIspitniRok">
+              <option>Januar</option>
+              <option>Februar</option>
+              <option>Mart</option>
+              <option>April</option>
+              <option>Maj</option>
+              <option>Jun</option>
+              <option>Jul</option>
+              <option>Avgust</option>
+              <option>Septembar</option>
+              <option>Oktobar</option>
+              <option>Novembar</option>
+              <option>Decembar</option>
+            </select>
+          </td>
+    			<td class="TdatumOtvaranjaPrijave">Danasnji datum</td> 
+    			<td class="TdatumZatvaranjaPrijave"><input class="OdatumZatvaranjaPrijave" type="date"></td>
+    			<td class="TdatumPolaganja"><input class="OdatumPolaganja" type="date"></td>
+          		<td class = "potvrdi"><button onclick="potvrdi()">POTVRDI</button></td>
+         </tr>
+      
+      
+
+	  </table>
+        
+       
+       <br><br>
+       <h3>Moje otvorene prijave</h3>
+       
+    <table>
+      	<tr>
+        	<th>Sifra Predmeta</th>
+        	<th>Naziv Predmeta</th>
+        	<th>Ispitni rok</th>
+        	<th>Datum polaganja</th>
+        	<th>Datum zatvaranja prijave</th>
+          <th>Datum otvaranja prijave</th>
+          <th></th>
+      	</tr>
+      	
+      	<tr th:each="o1 : ${opp}">  		
+    			<td class="sifraPredmeta" th:text="${o1.sifraPredmeta}"></td>
+    			<td class="nazivPredmeta" th:text="${o1.nazivPredmeta}"></td>
+    			<td class="ispitniRok" th:text="${o1.ispitniRok}"></td>
+    			<td class="datumPolaganja" th:text="${o1.datumPolaganja}"></td>
+    			<td class="datumZatvaranjaPrijave" th:text="${o1.datumZatvaranjaPrijave}"></td>
+    			<td class="datumOtvaranjaPrijave" th:text="${o1.datumOtvaranjaPrijave}"></td>
+    		
+         </tr>
+      
+      
+
+	  </table> 
+        
+    </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeProfesor.js"></script>
+  </body>
+</html>

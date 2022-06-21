@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body onload="loadStudenti()">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+        <h1><a href="/adminStudenti" class="logo">Studentska Sluzba</a></h1>
+        
+        
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="/Home"><span class="fa fa-user mr-3"></span>Pocetna Strana</a>
+          </li>
+          <li>
+              <a href="/StudentPredmeti"><span class="fa fa-sticky-note mr-3"></span>Izaberi Predmet</a>
+          </li>
+          <li>
+            <a href="/StudentPrijava"><span class="fa fa-sticky-note mr-3"></span> Prijavi Ispite</a>
+          </li>
+          <li>
+            <a href="/studentPregledIspiti"><span class="fa fa-sticky-note mr-3"></span>Pogledaj Prijave ispita</a>
+          </li>
+                  
+         <li>
+            <a href="/studentPregledPolozenihIspita"><span class="fa fa-sticky-note mr-3"></span>Pogledaj Polozene ispite</a>
+          </li>
+          <li>
+            <a href="/studentPregledPredmeti"><span class="fa fa-sticky-note mr-3"></span>Pogledaj Predmete koje slusam</a>
+          </li>
+          
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+      
+        <div id="card" th:each="student1 : ${stud}">
+          <h2><span th:text="${student1.ime}"></span><span>, </span>
+          <span th:text=" ${student1.imeOca}"></span><span>, </span>
+          <span th:text="${student1.prezime}"></span></h2>
+          <p id="title">Broj indeksa</p>
+          <br>
+          <p id="brindeksa" th:text="${student1.indeks}"></p>
+          <br>
+          <br>
+          <p class="inf"><b>JMBG:</b>&emsp;<span th:text="${student1.jmbg}"></span></p>
+          <br>
+          <p class="inf"><b>E-mail:</b>&emsp;<span th:text="${student1.email}"></span></p>
+          <br><br>
+        </div>
+
+        <table id="studentinfo" th:each="student : ${studenti}">>
+          <tr style="background: rgb(238, 237, 237)">
+            <td>Studije</td>
+            <td th:text="${student.studije}"></td>
+          </tr>
+          <tr></tr>
+            <td>Naziv smera</td>
+            <td th:text="${student.nazivSmera}"></td>
+          </tr><tr>
+            <td>Centar</td>
+            <td>Kragujevac</td>
+          </tr><tr>
+            <td>Status</td>
+            <td th:text="${student.status}"></td>
+          </tr>
+          <tr>
+            <td>Upisan semestar</td>
+            <td th:text="${student.upisanSemestar}"></td>
+          </tr><tr>
+            <td>Prosek</td>
+            <td th:text="${student.prosek}"></td>
+          </tr>
+          <tr>
+            <td>ESPB</td>
+            <td th:text="${student.espb}"></td>
+          </tr>
+        </table>
+     
+     
+		  </table>
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeStudent.js"></script>
+  </body>
+</html>

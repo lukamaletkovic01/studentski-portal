@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Studentska sluzba</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stajl.css">
+    <style>
+      form  { display: table;float:left;}
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; margin-right: 5px; }
+      .dugme{
+        float:left;
+        margin-left: 50px;
+        margin-top:100px;
+      }
+      #forma{
+        border-bottom: 2px solid blue;
+        height: 200px;
+        margin-bottom: 20px;;
+      }
+    </style>
+  </head>
+  <body onload="loadStudenti();obojiVrste();">
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+	  		<h1><a href="/adminStudenti" class="logo">Studentska Sluzba</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="/adminStudenti"><span class="fa fa-user mr-3"></span> Studenti</a>
+          </li>
+          <li>
+              <a href="/adminProfesori"><span class="fa fa-user mr-3"></span> Profesori</a>
+          </li>
+          <li>
+            <a href="/adminPredmeti"><span class="fa fa-sticky-note mr-3"></span> Predmeti</a>
+          </li>
+          <li>
+            <a href="/adminIspiti"><span class="fa fa-sticky-note mr-3"></span> Ispiti</a>
+          </li>
+        
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4"></h2>
+        <div id="forma" style="padding-bottom: 250px;">
+          <form>
+            <p>
+            <label for="ime">Ime:</label>
+            <input id="ime" name="ime" type="text">
+            <label for="imeOca">Ime oca:</label>
+            <input id="imeOca" name="imeOca" type="text">
+            </p><p>
+            <label for="prezime">Prezime:</label>
+            <input id="prezime" name="prezime" type="text">
+            <label for="studije">Studije:</label>
+            <select id="studije" name="studije">
+              <option value ="OSNOVNE">Osnovne</option>
+              <option value = "MASTER">Master</option>
+              <option value = "DOKTORSKE">Doktorske</option>
+            </select></p><p>
+            <label for="nazivSmera">Naziv smera:</label>
+            <input id="nazivSmera" name="nazivSmera" type="text">
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+              <option value = "BUDZET">Budzet</option>
+              <option value = "SAMOFINANSIRANJE">Samofinansiranje</option>
+            </select></p><p>
+            <label for="upisanSemestar">Upisan semestar:</label>
+            <input id="upisanSemestar" name="upisanSemestar" type="text">
+            <label for="jmbg">JMBG:</label>
+            <input id="jmbg" name="jmbg" type="text"></p><p>
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="text">
+            <label for="indeks">Indeks:</label>
+            <input id="indeks" name="indeks" type="text"></p>
+
+          </form>
+          <br><br><br><br><br><br><br>
+          <input style="margin-top: 15px;margin-left:600px" class="dugme" type="button" value="Dodaj" onclick="dodajStudent()">
+          <input style="margin-top: 15px;"class="dugme" type="button" value="Izmeni" onclick="izmeniStudent()">
+        </div>
+        
+        <span style="margin-right:5px;">Pretraga</span><input id="pretraga" type="text" onkeyup="filter()">
+        <select id="opcije">
+          <option value="Simeiprezime">Ime/Prezime</option>
+          <option value="2">Status</option>
+          <option value="3">Indeks</option>
+          <option value="4">Email</option>
+          <option value="5">JMBG</option>
+          <option value="6">Studije</option>
+          <option value="7">Upisan semestar</option>
+          <option value="9">Naziv smera</option>
+        </select>
+        <table>
+          <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Status</th>
+            <th>Indeks</th>
+            <th>Email</th>
+            <th>JMBG</th>
+            <th>Studije</th>
+            <th>Upisan semestar</th>
+            <th>Ime oca</th>
+            <th>Naziv smera</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr th:each="student : ${studenti}">
+            <td class="Time" id="" th:text="${student.ime}"></td>
+            <td class="Tprezime" th:text="${student.prezime}"></td>
+            <td class="Tstatus" th:text="${student.status}"></td>
+            <td class="index" th:text="${student.indeks}"></td>
+            <td class="Temail" th:text="${student.email}"></td>
+            <td class="Tjmbg" th:text="${student.jmbg}"></td>
+            <td class="Tstudije" th:text="${student.studije}"></td>
+            <td class="TupisanSemestar" th:text="${student.upisanSemestar}"></td>
+            <td class="TimeOca" th:text="${student.imeOca}"></td>
+            <td class="TnazivSmera" th:text="${student.nazivSmera}"></td>
+            <td class = "izmeni"></td>
+            <td class = "obrisi"></td>
+          </tr>
+     
+		  </table>
+      </div>
+		</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/funkcije.js"></script>
+    <script src="js/funkcijeAdmin.js"></script>
+  </body>
+</html>
